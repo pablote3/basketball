@@ -71,4 +71,10 @@
 			</plugin>
 		</plugins>
 	</build>
+
+    <modules>
+        <!--<module>accumulator-services</module>-->
+        <module>accumulator-scoreGame</module>
+        <!--<module>accumulator-loadSchedule</module>-->
+    </modules>
 </project>
