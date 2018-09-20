@@ -9,8 +9,8 @@
 
    <parent>
       <groupId>com.rossotti.basketball</groupId>
-      <artifactId>accumulator-parent</artifactId>
-      <version>5.1</version>
+      <artifactId>accumulator</artifactId>
+      <version>6.0</version>
       <relativePath>../pom.xml</relativePath>
    </parent>
 
