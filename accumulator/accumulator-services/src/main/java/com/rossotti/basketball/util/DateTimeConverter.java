@@ -1,4 +1,4 @@
-package com.rossotti.basketball.util.function;
+package com.rossotti.basketball.util;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

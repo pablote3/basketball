@@ -1,4 +1,4 @@
-package com.rossotti.basketball.util.function;
+package com.rossotti.basketball.util;
 
 public class FormatString {
 	static public String padString(String text, int length) {

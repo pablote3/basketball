@@ -1,4 +1,4 @@
-package com.rossotti.basketball.util.function;
+package com.rossotti.basketball.util;
 
 public class ThreadSleep {
 	public static void sleep(int nbrSeconds) {

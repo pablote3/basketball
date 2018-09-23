@@ -1,4 +1,4 @@
-package com.rossotti.basketball.util.function;
+package com.rossotti.basketball.util;
 
 import org.junit.Assert;
 import org.junit.Test;

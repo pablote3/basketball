@@ -1,4 +1,4 @@
-package com.rossotti.basketball.util.function;
+package com.rossotti.basketball.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
