@@ -1,9 +1,8 @@
 package com.rossotti.basketball.client.service;
 
-import com.rossotti.basketball.util.service.PropertyService;
-import com.rossotti.basketball.util.service.exception.PropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,16 +14,12 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class RestClientService {
 
-	private final PropertyService propertyService;
-
 	@Autowired
-	public RestClientService(PropertyService propertyService) {
-		this.propertyService = propertyService;
-	}
+	private Environment env;
 
-	private HttpEntity<String> getEntity() throws PropertyException {
-		String accessToken = propertyService.getProperty_String("xmlstats.accessToken");
-		String userAgent = propertyService.getProperty_String("xmlstats.userAgent");
+	private HttpEntity<String> getEntity() throws IllegalStateException {
+		String accessToken = env.getRequiredProperty("xmlstats.accessToken");
+		String userAgent = env.getRequiredProperty("xmlstats.userAgent");
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken);
