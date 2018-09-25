@@ -4,7 +4,7 @@ import com.rossotti.basketball.client.dto.GameDTO;
 import com.rossotti.basketball.client.dto.RosterDTO;
 import com.rossotti.basketball.client.dto.StandingsDTO;
 import com.rossotti.basketball.client.dto.StatusCodeDTO.StatusCode;
-import com.rossotti.basketball.util.function.ThreadSleep;
+import com.rossotti.basketball.util.ThreadSleep;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -12,13 +12,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.io.IOException;
 import java.time.LocalDate;
 
-@SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = com.rossotti.basketball.config.SpringConfig.class)
 public class RestClientServiceTest {
 
 	@Autowired
@@ -56,9 +53,8 @@ public class RestClientServiceTest {
 
 	@Ignore
 	@Test
-	public void retrieveRoster_401() throws IOException {
-		String accessToken = "badToken";
-		String userAgent = "validUserAgent";
+	public void retrieveRoster_401() throws IllegalStateException {
+        //bad access token
 		String rosterUrl = "https://erikberg.com/nba/roster/toronto-raptors.json";
 		int status = restClientService.getJson(rosterUrl).getStatusCode().value();
 		Assert.assertEquals(401, status);
@@ -66,9 +62,7 @@ public class RestClientServiceTest {
 
 	@Ignore
 	@Test
-	public void retrieveRoster_404() throws IOException {
-		String accessToken = "validAccessToken";
-		String userAgent = "validUserAgent";
+	public void retrieveRoster_404() throws IllegalStateException {
 		String badUrl = "https://erikberg.com/nba/roster/toronto-raps.json";
 		int status = restClientService.getJson(badUrl).getStatusCode().value();
 		Assert.assertEquals(404, status);
@@ -76,10 +70,9 @@ public class RestClientServiceTest {
 
 	@Ignore
 	@Test
-	public void retrieveRoster_403() throws IOException {
+	public void retrieveRoster_403() throws IllegalStateException {
 		//could cause ban of IP
-		String accessToken = "validAccessToken";
-		String userAgent = "badUserAgent";
+        //bad userAgent
 		String rosterUrl = "https://erikberg.com/nba/roster/toronto-raptors.json";
 		int status = restClientService.getJson(rosterUrl).getStatusCode().value();
 		Assert.assertEquals(403, status);
@@ -87,10 +80,8 @@ public class RestClientServiceTest {
 
 	@Ignore
 	@Test
-	public void retrieveRoster_429() throws IOException {
+	public void retrieveRoster_429() throws IllegalStateException {
 		//sending more than 6 requests in a minute is counted against account
-		String accessToken = "validAccessToken";
-		String userAgent = "validUserAgent";
 		String rosterUrl = "https://erikberg.com/nba/roster/toronto-raptors.json";
 		int status200 = restClientService.getJson(rosterUrl).getStatusCode().value();
 		Assert.assertEquals(200, status200);
