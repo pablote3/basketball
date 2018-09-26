@@ -2,7 +2,7 @@ package com.rossotti.basketball.jpa.repository;
 
 import com.rossotti.basketball.jpa.model.*;
 import com.rossotti.basketball.jpa.model.RosterPlayer.Position;
-import com.rossotti.basketball.util.function.DateTimeConverter;
+import com.rossotti.basketball.util.DateTimeConverter;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
